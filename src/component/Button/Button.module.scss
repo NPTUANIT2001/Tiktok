@@ -1,0 +1,85 @@
+.wrapper {
+  border-radius: 4px;
+  min-height: 36px;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 6px 8px;
+  user-select: none; //can't select into words
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: TikTokFont, Arial, Tahoma, PingFangSC, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  margin-left: 16px;
+  min-width: 100px;
+  background-color: var(--white);
+  &.disable {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+//button type
+.primary {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  &:hover {
+    border-color: var(--primary);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)),
+      #fe2c55;
+  }
+}
+.outline {
+  color: var(--primary);
+  border: 1px solid currentColor;
+
+  &:hover {
+    border-color: currentColor;
+    background-color: rgba(254, 44, 85, 0.06);
+  }
+}
+.rounded {
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+  border-color: rgba(22, 24, 35, 0.12);
+
+  &:hover {
+    border-color: rgba(22, 24, 35, 0.2);
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.text {
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  font-weight: 300;
+  &:hover {
+    text-decoration: underline;
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+//size
+.small {
+  min-width: 88px;
+  padding: 4px 16px;
+}
+.large {
+  padding: 14px 16px;
+  min-width: 140px;
+}
+
+.icon + .title,
+.title + .icon {
+  margin-left: 8px;
+}
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+}

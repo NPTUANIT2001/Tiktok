@@ -2,14 +2,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
 import images from "~/assets/images/index";
-import {
-  faCircleXmark,
-  faMagnifyingGlass,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import Tippy from "@tippyjs/react";
+
+import Button from "~/component/Button";
+import Menu from "~/component/Popper/menu";
+import { MENU_ITEMS, userMenu } from "./data";
+import { InboxIcon, MessageIcon, UploadIcon } from "~/component/Icons";
+import Images from "~/component/Images";
+import Search from "./search";
+
 const cx = classNames.bind(styles);
+
 function Header() {
-  console.log(images.logo);
+  const currentUser = true;
+  const handleMenuChange = (MenuItem) => {
+    switch (MenuItem.type) {
+      case "languge":
+        //handle change language
+        break;
+      default:
+    }
+  };
+
   return (
     <>
       <header className={cx("wrapper")}>
@@ -21,21 +36,53 @@ function Header() {
               style={{ width: "120px" }}
             />
           </div>
-          <div className={cx("search")}>
-            <input
-              placeholder="Search accounts and videos"
-              spellCheck={false}
-            />
-            <button className={cx("clear")}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
-
-            <button className={cx("search-btn")}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
+          <Search />
+          <div className={cx("actions")}>
+            {currentUser ? (
+              <>
+                <Tippy
+                  delay={[0, 200]}
+                  content="Upload video"
+                  placement="bottom"
+                >
+                  <button className={cx("action-btn")}>
+                    <UploadIcon />
+                  </button>
+                </Tippy>
+                <Tippy delay={[0, 200]} content="Message" placement="bottom">
+                  <button className={cx("action-btn")}>
+                    <MessageIcon />
+                  </button>
+                </Tippy>
+                <Tippy delay={[0, 200]} content="Inbox" placement="bottom">
+                  <button className={cx("action-btn")}>
+                    <InboxIcon />
+                  </button>
+                </Tippy>
+              </>
+            ) : (
+              <>
+                <Button text>Upload</Button>
+                <Button primary>Log in</Button>
+              </>
+            )}
+            <Menu
+              items={currentUser ? userMenu : MENU_ITEMS}
+              onChange={handleMenuChange}
+            >
+              {currentUser ? (
+                <Images
+                  className={cx("user-avatar")}
+                  src={images.avatar}
+                  alt="Nguyen Phuoc Tuan"
+                />
+              ) : (
+                <button className={cx("more-btn")}>
+                  <FontAwesomeIcon icon={faEllipsisVertical} />
+                </button>
+              )}
+            </Menu>
           </div>
-          <div className={cx("actions")}></div>
         </div>
       </header>
     </>

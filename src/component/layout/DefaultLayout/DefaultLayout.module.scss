@@ -4,10 +4,11 @@
   flex-direction: column;
 }
 .container {
-  width: 1150px;
+  width: var(--default-layout-width);
   background-color: antiquewhite;
   min-height: 1000px;
   display: flex;
+  padding: 0 var(--default-layout-horizontal-spacer);
 }
 .content {
   flex: 1;
