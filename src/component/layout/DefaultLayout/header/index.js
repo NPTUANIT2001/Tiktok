@@ -11,6 +11,7 @@ import { MENU_ITEMS, userMenu } from "./data";
 import { InboxIcon, MessageIcon, UploadIcon } from "~/component/Icons";
 import Images from "~/component/Images";
 import Search from "./search";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -30,11 +31,13 @@ function Header() {
       <header className={cx("wrapper")}>
         <div className={cx("inner")}>
           <div className={cx("logo")}>
-            <img
-              src={images.logo.default}
-              alt="logo"
-              style={{ width: "120px" }}
-            />
+            <Link to="/">
+              <img
+                src={images.logo.default}
+                alt="logo"
+                style={{ width: "120px", cursor: "pointer" }}
+              />
+            </Link>
           </div>
           <Search />
           <div className={cx("actions")}>
